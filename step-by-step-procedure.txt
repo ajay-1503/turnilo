@@ -1,0 +1,33 @@
+Steps:
+
+1) Navigate to this page : https://druid.apache.org/docs/latest/tutorials/index.html
+2) There is a section to install Druid. 
+3) Click on Download the 24.0.0 release from Apache Druid link. It will take it to this page : https://www.apache.org/dyn/closer.cgi?path=/druid/24.0.0/apache-druid-24.0.0-bin.tar.gz
+4) Download the tar using wget.
+5) tar -xzf apache-druid-24.0.0-bin.tar.gz
+6) cd apache-druid-24.0.0
+7) ./bin/start-micro-quickstart This brings up instances of ZooKeeper and the Druid services
+8) Open the web console. After the Druid services finish startup, open the web console at http://localhost:8888.
+9) In the Query view, click Connect external data. 
+10) Select the Local disk tile and enter the following values:
+    Base directory: quickstart/tutorial/
+    File filter: your-file-name.csv
+11) Click Connect data.
+12) On the Parse page, you can examine the raw data and perform the multiple optional actions before loading data into Druid.
+13) Click Done. We will be returned to the Query view that displays the newly generated query. The query inserts the sample data into the table.
+14) Click Run to execute the query. The task may take a minute or two to complete. When done, the task displays its duration and the number of rows inserted into the table. The view is set to automatically refresh, so you don't need to refresh the browser to see the status change.
+15) We can then query the data in the query console.
+
+
+Connecting Turnilo to Druid:
+17) sudo apt install npm
+18) npm install -g turnilo
+19) turnilo --druid http[s]://druid-broker-hostname[:port] Example:  turnilo --druid http://localhost:8888
+
+Note: While ingesting the data in druid we can change the datatype of the field. For example, creative id is generally integer/long. But if we wish to upload that as string, we can mention the datatype as string in the ingestion spec.
+
+The above steps talks about ingesting a file in druid, we can follow similar steps to get it integrated with other sources like S3, HDFS,Google cloud etc.
+
+References: 
+1) https://github.com/apache/druid
+2) https://github.com/allegro/turnilo
